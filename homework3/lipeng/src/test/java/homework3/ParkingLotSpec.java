@@ -12,16 +12,18 @@ public class ParkingLotSpec {
     {
 
         describe("停车场", () -> {
-            it("只要没满可以停车", () -> {
-                ParkingLot parkingLot = new ParkingLot(2);
-                parkingLot.park(new Car());
-                assertThat(parkingLot.getAvailableSpaces()).isEqualTo(1);
-            });
-            it("满了就不能停了", () -> {
-                ParkingLot parkingLot = new ParkingLot(1);
-                parkingLot.park(new Car());
-                parkingLot.park(new Car());
-                assertThat(parkingLot.getAvailableSpaces()).isEqualTo(0);
+            describe("停车", () -> {
+                it("只要没满可以停车", () -> {
+                    ParkingLot parkingLot = new ParkingLot(2);
+                    parkingLot.park(new Car());
+                    assertThat(parkingLot.getAvailableSpaces()).isEqualTo(1);
+                });
+                it("满了就不能停了", () -> {
+                    ParkingLot parkingLot = new ParkingLot(1);
+                    parkingLot.park(new Car());
+                    parkingLot.park(new Car());
+                    assertThat(parkingLot.getAvailableSpaces()).isEqualTo(0);
+                });
             });
         });
 
