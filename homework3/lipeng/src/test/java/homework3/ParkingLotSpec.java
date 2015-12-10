@@ -25,6 +25,13 @@ public class ParkingLotSpec {
                     assertThat(parkingLot.getAvailableSpaces()).isEqualTo(0);
                 });
             });
+            describe("取车", () -> {
+                ParkingLot parkingLot = new ParkingLot(2);
+                Car car = new Car();
+                String ticket = parkingLot.park(car);
+                Car returnedCar = parkingLot.unpark(ticket);
+                assertThat(returnedCar).isEqualTo(car);
+            });
         });
 
     }

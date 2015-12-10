@@ -1,23 +1,34 @@
 package homework3;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ParkingLot {
     private final int capacity;
-    private final List<Car> cars = new ArrayList<Car>();
+    private final Map<String, Car> cars = new HashMap();
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
     }
 
-    public void park(Car car) {
+    public String park(Car car) {
         if (getAvailableSpaces() > 0) {
-            this.cars.add(car);
+            String ticket = newTicket();
+            this.cars.put(ticket, car);
+            return ticket;
+        } else {
+            return null;
         }
+    }
+
+    private String newTicket() {
+        return UUID.randomUUID().toString();
     }
 
     public int getAvailableSpaces() {
         return capacity - cars.size();
+    }
+
+    public Car unpark(String ticket) {
+        return cars.get(ticket);
     }
 }
