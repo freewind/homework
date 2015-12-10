@@ -36,6 +36,31 @@ public class ParkingBoySpec {
                     String ticket = boy.park(car);
                     assertThat(ticket).isNull();
                 });
+                describe("停车时,会采用'依次停满'的策略", () -> {
+                    it("如果第一个停车场没满,会停在第一个", () -> {
+                        parkingLot1 = new ParkingLot(2);
+                        parkingLot2 = new ParkingLot(2);
+                        boy = new ParkingBoy(parkingLot1, parkingLot2);
+
+                        boy.park(new Car());
+                        boy.park(new Car());
+
+                        assertThat(parkingLot1.getAvailableSpaces()).isEqualTo(0);
+                        assertThat(parkingLot2.getAvailableSpaces()).isEqualTo(2);
+                    });
+                    it("如果第一个停车场停满了,才会停在第二个", () -> {
+                        parkingLot1 = new ParkingLot(2);
+                        parkingLot2 = new ParkingLot(2);
+                        boy = new ParkingBoy(parkingLot1, parkingLot2);
+
+                        boy.park(new Car());
+                        boy.park(new Car());
+                        boy.park(new Car());
+
+                        assertThat(parkingLot1.getAvailableSpaces()).isEqualTo(0);
+                        assertThat(parkingLot2.getAvailableSpaces()).isEqualTo(1);
+                    });
+                });
             });
             describe("取车", () -> {
                 it("可以帮忙取车", () -> {
