@@ -43,6 +43,15 @@ public class ParkingBoySpec {
                     Car car = boy.unpark(ticket);
                     assertThat(car).isNotNull();
                 });
+                it("如果没票则不能取车", () -> {
+                    String nonTicket = null;
+                    Car car = boy.unpark(nonTicket);
+                    assertThat(car).isNull();
+                });
+                it("如果票不对,则不能取车", () -> {
+                    Car car = boy.unpark("invalid-ticket");
+                    assertThat(car).isNull();
+                });
             });
         });
 
