@@ -23,4 +23,14 @@ public class ParkingBoy {
         }
         return null;
     }
+
+    public Car unpark(String ticket) {
+        for (ParkingLot lot : parkingLots) {
+            Car car = lot.unpark(ticket);
+            if (car != null) {
+                return car;
+            }
+        }
+        return null;
+    }
 }
