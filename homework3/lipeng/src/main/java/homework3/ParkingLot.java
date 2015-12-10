@@ -12,7 +12,9 @@ public class ParkingLot {
     }
 
     public void park(Car car) {
-        this.cars.add(car);
+        if (getAvailableSpaces() > 0) {
+            this.cars.add(car);
+        }
     }
 
     public int getAvailableSpaces() {

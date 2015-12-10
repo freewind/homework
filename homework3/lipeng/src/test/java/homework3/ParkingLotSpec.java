@@ -17,6 +17,12 @@ public class ParkingLotSpec {
                 parkingLot.park(new Car());
                 assertThat(parkingLot.getAvailableSpaces()).isEqualTo(1);
             });
+            it("满了就不能停了", () -> {
+                ParkingLot parkingLot = new ParkingLot(1);
+                parkingLot.park(new Car());
+                parkingLot.park(new Car());
+                assertThat(parkingLot.getAvailableSpaces()).isEqualTo(0);
+            });
         });
 
     }
