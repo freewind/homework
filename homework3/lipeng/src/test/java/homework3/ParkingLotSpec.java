@@ -28,11 +28,23 @@ public class ParkingLotSpec {
                 });
             });
             describe("取车", () -> {
-                ParkingLot parkingLot = new ParkingLot(2);
-                Car car = new Car();
-                String ticket = parkingLot.park(car);
-                Car returnedCar = parkingLot.unpark(ticket);
-                assertThat(returnedCar).isEqualTo(car);
+                it("可以取回自己的车", () -> {
+                    ParkingLot parkingLot = new ParkingLot(2);
+                    Car car = new Car();
+                    String ticket = parkingLot.park(car);
+                    Car returnedCar = parkingLot.unpark(ticket);
+                    assertThat(returnedCar).isEqualTo(car);
+                });
+                it("无票不能取车", () -> {
+                    ParkingLot parkingLot = new ParkingLot(2);
+                    Car returnedCar = parkingLot.unpark(null);
+                    assertThat(returnedCar).isNull();
+                });
+                it("无效票不能取车", () -> {
+                    ParkingLot parkingLot = new ParkingLot(2);
+                    Car returnedCar = parkingLot.unpark("invalid-ticket");
+                    assertThat(returnedCar).isNull();
+                });
             });
         });
 
