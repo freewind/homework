@@ -31,4 +31,8 @@ public class ParkingLot {
     public Car unpark(String ticket) {
         return cars.get(ticket);
     }
+
+    public double getEmptyRatio() {
+        return getAvailableSpaces()/(double)capacity;
+    }
 }
