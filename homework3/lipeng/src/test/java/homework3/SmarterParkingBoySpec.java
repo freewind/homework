@@ -1,6 +1,7 @@
 package homework3;
 
 import com.greghaskins.spectrum.Spectrum;
+import homework3.finding_policy.MoreSpacesPolicy;
 import org.junit.runner.RunWith;
 
 import static com.greghaskins.spectrum.Spectrum.*;
@@ -13,7 +14,7 @@ public class SmarterParkingBoySpec {
 
     private ParkingLot parkingLot2;
 
-    private SmarterParkingBoy boy;
+    private ParkingBoy boy;
 
     private Car car;
 
@@ -21,7 +22,7 @@ public class SmarterParkingBoySpec {
         beforeEach(() -> {
             parkingLot1 = new ParkingLot(1);
             parkingLot2 = new ParkingLot(2);
-            boy = new SmarterParkingBoy(parkingLot1, parkingLot2);
+            boy = new ParkingBoy(new MoreSpacesPolicy(), parkingLot1, parkingLot2);
             car = new Car();
         });
 
@@ -33,12 +34,5 @@ public class SmarterParkingBoySpec {
             });
         });
 
-        describe("取车", () -> {
-            it("可以帮忙取车", () -> {
-                String ticket = boy.park(car);
-                Car car = boy.unpark(ticket);
-                assertThat(car).isNotNull();
-            });
-        });
     }
 }

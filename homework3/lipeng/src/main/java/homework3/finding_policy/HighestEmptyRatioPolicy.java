@@ -1,15 +1,14 @@
-package homework3;
+package homework3.finding_policy;
+
+import homework3.ParkingLot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SmartestParkingBoy extends ParkingBoy {
+public class HighestEmptyRatioPolicy implements FindingParkingLotPolicy {
 
-    public SmartestParkingBoy(ParkingLot... parkingLots) {
-        super(parkingLots);
-    }
-
-    public String park(Car car) {
+    @Override
+    public ParkingLot findBestParkingLot(List<ParkingLot> parkingLots) {
         List<ParkingLot> copy = new ArrayList<>(parkingLots);
         copy.sort((o1, o2) -> {
             double emptyRatio2 = o2.getEmptyRatio();
@@ -22,6 +21,7 @@ public class SmartestParkingBoy extends ParkingBoy {
                 return -1;
             }
         });
-        return copy.get(0).park(car);
+        return copy.get(0);
+
     }
 }

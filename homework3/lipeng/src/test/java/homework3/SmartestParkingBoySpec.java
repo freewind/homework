@@ -1,6 +1,7 @@
 package homework3;
 
 import com.greghaskins.spectrum.Spectrum;
+import homework3.finding_policy.HighestEmptyRatioPolicy;
 import org.junit.runner.RunWith;
 
 import static com.greghaskins.spectrum.Spectrum.*;
@@ -11,14 +12,14 @@ public class SmartestParkingBoySpec {
 
     private ParkingLot parkingLot1;
     private ParkingLot parkingLot2;
-    private SmartestParkingBoy boy;
+    private ParkingBoy boy;
 
     {
 
         beforeEach(() -> {
             parkingLot1 = new ParkingLot(6);
             parkingLot2 = new ParkingLot(10);
-            boy = new SmartestParkingBoy(parkingLot1, parkingLot2);
+            boy = new ParkingBoy(new HighestEmptyRatioPolicy(), parkingLot1, parkingLot2);
 
             parkCars(parkingLot1, 2);
             parkCars(parkingLot2, 5);

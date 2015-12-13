@@ -1,6 +1,7 @@
 package homework3;
 
 import com.greghaskins.spectrum.Spectrum;
+import homework3.finding_policy.SequencePolicy;
 import org.junit.runner.RunWith;
 
 import static com.greghaskins.spectrum.Spectrum.*;
@@ -18,7 +19,7 @@ public class ParkingBoySpec {
         beforeEach(() -> {
             parkingLot1 = new ParkingLot(3);
             parkingLot2 = new ParkingLot(2);
-            boy = new ParkingBoy(parkingLot1, parkingLot2);
+            boy = new ParkingBoy(new SequencePolicy(), parkingLot1, parkingLot2);
             car = new Car();
         });
 
@@ -29,7 +30,7 @@ public class ParkingBoySpec {
                     assertThat(ticket).isNotNull();
                 });
                 it("如果没有空位,则停不了", () -> {
-                    boy = new ParkingBoy(new ParkingLot(0));
+                    boy = new ParkingBoy(new SequencePolicy(), new ParkingLot(0));
                     String ticket = boy.park(car);
                     assertThat(ticket).isNull();
                 });
@@ -37,7 +38,7 @@ public class ParkingBoySpec {
                     it("如果第一个停车场没满,会停在第一个", () -> {
                         parkingLot1 = new ParkingLot(2);
                         parkingLot2 = new ParkingLot(2);
-                        boy = new ParkingBoy(parkingLot1, parkingLot2);
+                        boy = new ParkingBoy(new SequencePolicy(), parkingLot1, parkingLot2);
 
                         boy.park(new Car());
                         boy.park(new Car());
@@ -48,7 +49,7 @@ public class ParkingBoySpec {
                     it("如果第一个停车场停满了,才会停在第二个", () -> {
                         parkingLot1 = new ParkingLot(2);
                         parkingLot2 = new ParkingLot(2);
-                        boy = new ParkingBoy(parkingLot1, parkingLot2);
+                        boy = new ParkingBoy(new SequencePolicy(), parkingLot1, parkingLot2);
 
                         boy.park(new Car());
                         boy.park(new Car());

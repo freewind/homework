@@ -1,24 +1,23 @@
 package homework3;
 
+import homework3.finding_policy.FindingParkingLotPolicy;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class ParkingBoy {
 
     protected final List<ParkingLot> parkingLots;
+    private final FindingParkingLotPolicy findingParkingLotPolicy;
 
-    public ParkingBoy(ParkingLot... parkingLots) {
+    public ParkingBoy(FindingParkingLotPolicy policy, ParkingLot... parkingLots) {
         this.parkingLots = Arrays.asList(parkingLots);
+        this.findingParkingLotPolicy = policy;
     }
 
     public String park(Car car) {
-        for (ParkingLot lot : parkingLots) {
-            String ticket = lot.park(car);
-            if (ticket != null) {
-                return ticket;
-            }
-        }
-        return null;
+        ParkingLot best = findingParkingLotPolicy.findBestParkingLot(parkingLots);
+        return best.park(car);
     }
 
     public Car unpark(String ticket) {
