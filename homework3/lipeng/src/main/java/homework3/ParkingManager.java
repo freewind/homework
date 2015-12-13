@@ -2,26 +2,26 @@ package homework3;
 
 import java.util.List;
 
-public class ParkingManager {
-    private List<ParkingBoy> boys;
+public class ParkingManager implements Parker {
+    private final List<Parker> parkers;
 
-    public ParkingManager(List<ParkingBoy> boys) {
-        this.boys = boys;
+    public ParkingManager(List<Parker> parkers) {
+        this.parkers = parkers;
     }
 
     public String park(Car car) {
-        for (ParkingBoy boy : boys) {
-            String park = boy.park(car);
-            if (park != null) {
-                return park;
+        for (Parker parker : parkers) {
+            String ticket = parker.park(car);
+            if (ticket != null) {
+                return ticket;
             }
         }
         return null;
     }
 
     public Car unpark(String ticket) {
-        for (ParkingBoy boy : boys) {
-            Car car = boy.unpark(ticket);
+        for (Parker parker : parkers) {
+            Car car = parker.unpark(ticket);
             if (car != null) {
                 return car;
             }

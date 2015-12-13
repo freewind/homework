@@ -14,7 +14,7 @@ public class SmarterParkingBoySpec {
 
     private ParkingLot parkingLot2;
 
-    private ParkingBoy boy;
+    private Parker boy;
 
     private Car car;
 

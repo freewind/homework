@@ -12,7 +12,7 @@ public class SmartestParkingBoySpec {
 
     private ParkingLot parkingLot1;
     private ParkingLot parkingLot2;
-    private ParkingBoy boy;
+    private Parker boy;
 
     {
 

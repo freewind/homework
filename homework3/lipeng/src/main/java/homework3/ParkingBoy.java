@@ -5,7 +5,7 @@ import homework3.finding_policy.FindingParkingLotPolicy;
 import java.util.Arrays;
 import java.util.List;
 
-public class ParkingBoy {
+public class ParkingBoy implements Parker {
 
     protected final List<ParkingLot> parkingLots;
     private final FindingParkingLotPolicy findingParkingLotPolicy;
@@ -15,11 +15,13 @@ public class ParkingBoy {
         this.findingParkingLotPolicy = policy;
     }
 
+    @Override
     public String park(Car car) {
         ParkingLot best = findingParkingLotPolicy.findBestParkingLot(parkingLots);
         return best.park(car);
     }
 
+    @Override
     public Car unpark(String ticket) {
         for (ParkingLot lot : parkingLots) {
             Car car = lot.unpark(ticket);
