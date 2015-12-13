@@ -23,9 +23,6 @@ public class ParkingBoySpec {
         });
 
         describe("管理员", () -> {
-            it("可以管理多个停车场", () -> {
-                assertThat(boy.getParkingLots()).containsExactly(parkingLot1, parkingLot2);
-            });
             describe("停车", () -> {
                 it("可以帮忙停车", () -> {
                     String ticket = boy.park(car);
