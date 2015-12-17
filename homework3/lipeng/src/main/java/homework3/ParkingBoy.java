@@ -31,4 +31,11 @@ public class ParkingBoy implements Parker {
         }
         return null;
     }
+
+    @Override
+    public String reportInfo() {
+        Integer allAvailable = parkingLots.stream().map(ParkingLot::getAvailableSpaces).reduce(Integer::sum).get();
+        Integer allCapacity = parkingLots.stream().map(ParkingLot::getCapacity).reduce(Integer::sum).get();
+        return "ParkingBoy (" + allAvailable.toString() + "/" + allCapacity.toString() + ")";
+    }
 }

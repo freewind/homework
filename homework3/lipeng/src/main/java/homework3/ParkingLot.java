@@ -33,6 +33,10 @@ public class ParkingLot {
     }
 
     public double getEmptyRatio() {
-        return getAvailableSpaces()/(double)capacity;
+        return getAvailableSpaces() / (double) capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }

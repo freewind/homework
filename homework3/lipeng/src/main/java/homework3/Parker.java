@@ -4,4 +4,6 @@ public interface Parker {
     String park(Car car);
 
     Car unpark(String ticket);
+
+    String reportInfo();
 }

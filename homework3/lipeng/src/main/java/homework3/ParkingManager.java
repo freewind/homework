@@ -1,6 +1,10 @@
 package homework3;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ParkingManager implements Parker {
     private final List<Parker> parkers;
@@ -27,6 +31,12 @@ public class ParkingManager implements Parker {
             }
         }
         return null;
+    }
+
+    public String reportInfo() {
+        String parkersReport = parkers.stream()
+                .flatMap(parker -> Arrays.stream(parker.reportInfo().split("\n")).map(line -> "-- " + line)).reduce((a, b) -> a + "\n" + b).get();
+        return "ParkingManager\n" + parkersReport;
     }
 
 }
